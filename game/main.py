@@ -1,8 +1,17 @@
-import engine
-import world
+from game.engine import GameEngine
 
-engine.hello_world()
-world.hello_world()
+def main():
+  """Entry point for the game."""
+  game = GameEngine()
+  game.start()
+
+if __name__ == '__main__':
+  main()
+
+
+
+#Some examples of how to use the engine, BE SURE TO DELETE THESE BEFORE SUBMITTING
+#engine.hello_world()
 
 print(engine.my_dog.type())
 print(engine.my_dog.bark())
