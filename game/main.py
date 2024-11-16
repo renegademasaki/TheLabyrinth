@@ -1,4 +1,4 @@
-from game.engine import GameEngine
+from engine import GameEngine
 
 def main():
   """Entry point for the game."""
