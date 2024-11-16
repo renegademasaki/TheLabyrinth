@@ -2,6 +2,10 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 import os
+from .world import World
+from .player import Player
+from .commands import CommandParser
+from .items import Item
 
 class GameEngine:
     def __init__(self):
