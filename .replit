@@ -1,4 +1,4 @@
-entrypoint = "game/main.py"
+entrypoint = "python3 main.py"
 modules = ["python-3.11"]
 
 [nix]
