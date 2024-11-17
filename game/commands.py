@@ -14,9 +14,10 @@ class CommandParser:
       "help": self.help_command,
       "look": self.look_command,
       "inventory": self.inventory_command,
+      "inv": self.inventory_command,
       "take": self.take_command,
-      #"drop": self.drop_command,
-      #"examine": self.examine_command,
+      "drop": self.drop_command,
+      "examine": self.examine_command,
       #"use": self.use_command,
       #"talk": self.talk_command,
       #"give": self.give_command,
@@ -50,7 +51,7 @@ class CommandParser:
     commands_help = {
       "north/south/east/west": "Move in that direction",
       "look": "Look around the current room",
-      "inventory": "Display the items in your inventory",
+      "inventory/inv": "Display the items in your inventory",
       "take <item>": "Pick up an item and add to your inventory",
       "drop <item>": "Drop an item from your inventory",
       "examine <item>": "Look closely at an item",
@@ -122,6 +123,26 @@ class CommandParser:
         self.console.print("[red]You can't take that.[/red]")
     else:
       self.console.print("[red]You don't see that here.[/red]")
+
+  def drop_command(self, command, *args):
+    """Handle dropping items"""
+    if not args:
+      self.console.print("[red]What do you want to drop?[/red]")
+      return
+
+    item_name = " ".join(args)
+    current_room = self.game_engine.player.current_room
+
+    for item in self.game_engine.player.inventory():
+      if item.name.lower() == item_name.lower():
+        self.game_engine.player.remove_from_inventory(item)
+        current_room.add_item(item)
+        self.console.print(f"[green]Dropped: {item.name}.[/green]")
+        return
+
+    self.console.print("[red]You don't have that item.[/red]")
+
+  def examine_command(self, command, *args):
 
   def quit_command(self, *args):
     """Exit the game"""
