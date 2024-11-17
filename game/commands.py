@@ -14,7 +14,7 @@ class CommandParser:
       "help": self.help_command,
       "look": self.look_command,
       "inventory": self.inventory_command,
-      #"take": self.take_command,
+      "take": self.take_command,
       #"drop": self.drop_command,
       #"examine": self.examine_command,
       #"use": self.use_command,
@@ -102,6 +102,26 @@ class CommandParser:
         self.console.print(f"- {item.name}")
     else:
       self.console.print("\n[yellow]Your inventory is empty.[/yellow]")
+
+  def take_command(self, command, *args):
+    """Handle taking items"""
+    if not args:
+      self.console.print("[red]What do you want to take?[/red]")
+      return
+
+    item_name = " ".join(args)
+    current_room = self.game_engine.player.current_room
+    item = current_room.get_item(item_name)
+
+    if item:
+      if item.can_take:
+        current_room.remove_item(item_name)
+        self.game_engine.player.add_to_inventory(item)
+        self.console.print(f"[green]You take the {item.name}.[/green]")
+      else:
+        self.console.print("[red]You can't take that.[/red]")
+    else:
+      self.console.print("[red]You don't see that here.[/red]")
 
   def quit_command(self, *args):
     """Exit the game"""

@@ -104,7 +104,7 @@ class World:
     lever = Item(
       "Lever",
       "A wooden lever with a rusted handle.",
-      "You pull the lever and the door unlocks!"
+      puzzle_hint="This lever looks like it could be used to unlock something."
     )
     
     entrance.add_item(lever)
