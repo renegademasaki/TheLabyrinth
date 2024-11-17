@@ -16,8 +16,8 @@ class CommandParser:
       "inventory": self.inventory_command,
       "inv": self.inventory_command,
       "take": self.take_command,
-      "drop": self.drop_command,
-      "examine": self.examine_command,
+      #"drop": self.drop_command,
+      #"examine": self.examine_command,
       #"use": self.use_command,
       #"talk": self.talk_command,
       #"give": self.give_command,
@@ -53,8 +53,8 @@ class CommandParser:
       "look": "Look around the current room",
       "inventory/inv": "Display the items in your inventory",
       "take <item>": "Pick up an item and add to your inventory",
-      "drop <item>": "Drop an item from your inventory",
-      "examine <item>": "Look closely at an item",
+      #"drop <item>": "Drop an item from your inventory",
+      #"examine <item>": "Look closely at an item",
       "use <item>": "Use an item in your inventory",
       "talk [choice]": "Talk to a character",
       "give <item>": "Give an item to a character",
@@ -124,6 +124,7 @@ class CommandParser:
     else:
       self.console.print("[red]You don't see that here.[/red]")
 
+  '''
   def drop_command(self, command, *args):
     """Handle dropping items"""
     if not args:
@@ -177,6 +178,7 @@ class CommandParser:
             self.console.print(f"- {content_item.name}")
     else:
       self.console.print("[red]You don't see that here.[/red]")
+      '''
 
   def quit_command(self, *args):
     """Exit the game"""
