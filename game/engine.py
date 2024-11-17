@@ -24,7 +24,7 @@ class GameEngine:
         """Display the welcome message"""
         welcome_text = Text('Welcome to the Text Adventure Game!', style='bold green')
         self.console.print(Panel(welcome_text, title='The Labyrinth'))
-        self.console.print("\nType 'help' for a list of commands.\n")
+        self.console.print("\nType 'help' for a list of commands.\n", style='yellow')
 
     def game_loop(self):
         """Main game loop"""
