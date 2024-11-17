@@ -41,6 +41,29 @@ class GameEngine:
         room = self.player.current_room
         self.console.print(Panel(room.description, title=room.name, style="blue"))
 
+        # Display puzzle if present
+        if room.puzzle:
+            if room.puzzle.is_solved:
+                # Show solved puzzle state
+                self.console.print(Panel(
+                    room.puzzle.solved_description,
+                    title=f"[bright_green] {room.puzzle.name} - SOLVED[/bright_green]",
+                    style="bright_green"
+                ))
+            else:
+                # Show unsolved puzzle
+                self.console.print(Panel(
+                    room.puzzle.description,
+                    title=f"[yellow] {room.puzzle.name}[/yellow]",
+                    style="yellow"
+                ))
+
+        # Display items in the room
+        if room.items:
+            items_text = "\nYou see: "
+            items_text += ", ".join(f"[yellow]{item.name}[/yellow]" for item in room.items)
+            self.console.print(items_text)
+
         # Display available exits
         all_exits = []
         # Add normal exits
