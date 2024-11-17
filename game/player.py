@@ -10,3 +10,18 @@ class Player:
       self.current_room = self.current_room.exits[direction]
       return True
     return False
+
+  def add_to_inventory(self, item):
+    """Add an item to the player's inventory."""
+    self.inventory.append(item)
+
+  def remove_from_inventory(self, item):
+    """Remove an item from the player's inventory."""
+    if item in self.inventory:
+      self.inventory.remove(item)
+      return True
+    return False
+
+  def get_inventory(self):
+    """Return a list of the player's inventory items."""
+    return self.inventory
