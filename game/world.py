@@ -9,6 +9,13 @@ class Room:
     self.locked_items = {}
     self.npc = None
 
+  def add_exit(self, direction, room, requires_puzzle=None):
+    """Add an exit to the room, optionally requiring a puzzle to be solved"""
+    if requires_puzzle:
+      self.locked_exits[direction] = (room, requires_puzzle)
+    else:
+      self.exits[direction] = room
+
 class World:
   def __init__(self):
     self.rooms = {}
