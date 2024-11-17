@@ -41,6 +41,20 @@ class GameEngine:
         room = self.player.current_room
         self.console.print(Panel(room.description, title=room.name, style="blue"))
 
+        # Display available exits
+        all_exits = []
+        # Add normal exits
+        if room.exits:
+            all_exits.extend([f"[green]{direction}[/green]" for direction in room.exits.keys()])
+        # Add locked exits
+        if room.locked_exits:
+            all_exits.extend([f"[red]{direction}[/red] (locked)" for direction in room.locked_exits.keys()])
+
+        if all_exits:
+            self.console.print(f"\nExits: {', '.join(all_exits)}")
+        else:
+            self.console.print("\nExits: none")
+
     def quit_game(self):
         """Exit the game"""
         self.console.print("\nThanks for playing!", style="bold green")
