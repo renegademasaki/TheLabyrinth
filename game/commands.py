@@ -20,7 +20,7 @@ class CommandParser:
       "drop": self.drop_command,
       "examine": self.examine_command,
       "use": self.use_command,
-      #"talk": self.talk_command,
+      "talk": self.talk_command,
       #"give": self.give_command,
       #"open": self.open_command,
       "quit": self.quit_command,
@@ -57,7 +57,7 @@ class CommandParser:
       "drop <item>": "Drop an item from your inventory",
       "examine <item>": "Look closely at an item",
       "use <item>": "Use an item in your inventory",
-      "talk [choice]": "Talk to a character",
+      "talk [name]": "Talk to a character",
       "give <item>": "Give an item to a character",
       "open <container>": "Open a container or chest",
       "help": "Display this help message",
@@ -205,6 +205,27 @@ class CommandParser:
             self.console.print(f"- {content_item.name}")
     else:
       self.console.print("[red]You don't see that here.[/red]")
+
+  def talk_command(self, command, *args):
+    """Handle talking to characters"""
+    current_room = self.game_engine.player.current_room
+    if not current_room.npc:
+      self.console.print("[red]There is no one here to talk to.[/red]")
+      return
+
+    npc = current_room.npc
+    dialogue = npc.talk()
+
+    if args and args[0].isdigit() and 1 <= int(args[0]) <= len(dialogue):
+      # Player is making a dialogue choice
+      choice = args[0]
+      response = npc.respond(choice)
+      self.console.print(f"\n[green]{response}[/green]")
+    else:
+      # Display available dialogue options
+      self.console.print(f"\n[yellow]{npc.name}[/yellow]: {npc.description}")
+      for option, (text, _) in dialogue.items():
+        self.console.print(f"[cyan]{option}[/cyan]: {text}")
 
   def quit_command(self, *args):
     """Exit the game"""
