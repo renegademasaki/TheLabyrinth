@@ -30,7 +30,7 @@ class GameEngine:
         """Main game loop"""
         while self.is_running:
             self.display_room()
-            self.console.print("\nWhat would you like to do? ", end="What is this?")
+            self.console.print("\nWhat would you like to do? ", end="")
             command = input().lower().strip()
 
         if command:
