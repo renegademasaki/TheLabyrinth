@@ -2,6 +2,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 import os
+import sys
 from .world import World
 from .player import Player
 from .commands import CommandParser
@@ -39,6 +40,12 @@ class GameEngine:
         """Display current room description and available exits"""
         room = self.player.current_room
         self.console.print(Panel(room.description, title=room.name, style="blue"))
+
+    def quit_game(self):
+        """Exit the game"""
+        self.console.print("\nThanks for playing!", style="bold green")
+        self.is_running = False
+        sys.exit(0)
 
     def start(self):
         """Start the game"""

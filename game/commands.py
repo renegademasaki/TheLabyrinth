@@ -14,13 +14,13 @@ class CommandParser:
       "help": self.help_command,
       "look": self.look_command,
       "inventory": self.inventory_command,
-      "take": self.take_command,
-      "drop": self.drop_command,
-      "examine": self.examine_command,
-      "use": self.use_command,
-      "talk": self.talk_command,
-      "give": self.give_command,
-      "open": self.open_command,
+      #"take": self.take_command,
+      #"drop": self.drop_command,
+      #"examine": self.examine_command,
+      #"use": self.use_command,
+      #"talk": self.talk_command,
+      #"give": self.give_command,
+      #"open": self.open_command,
       "quit": self.quit_command,
       "exit": self.quit_command
     }
@@ -100,3 +100,7 @@ class CommandParser:
         self.console.print(f"- {item.name}")
     else:
       self.console.print("\n[yellow]Your inventory is empty.[/yellow]")
+
+  def quit_command(self, *args):
+    """Exit the game"""
+    self.game_engine.quit_game()
