@@ -33,8 +33,8 @@ class GameEngine:
             self.console.print("\nWhat would you like to do? ", end="")
             command = input().lower().strip()
 
-        if command:
-            self.command_parser.parse_command(command)
+            if command:
+                self.command_parser.parse_command(command)
 
     def display_room(self):
         """Display current room description and available exits"""
