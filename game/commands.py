@@ -143,6 +143,40 @@ class CommandParser:
     self.console.print("[red]You don't have that item.[/red]")
 
   def examine_command(self, command, *args):
+    """Handle examining items"""
+    if not args:
+      self.console.print("[red]What do you want to examine?[/red]")
+      return
+
+    item_name = " ".join(args)
+    current_room = self.game_engine.player.current_room
+
+    # Check inventory first
+    for item in self.game_engine.player.inventory():
+      if item.name.lower() == item_name.lower():
+        self.console.print(f"\n[yellow]{item.name}[/yellow]")
+        self.console.print(item.examine())
+        if isinstance(item, Container) and item.is_open:
+          contents = item.get_contents()
+          if contents:
+            self.console.print("\n[yellow]Contents:[/yellow]")
+            for content_item in contents:
+              self.console.print(f"- {content_item.name}")
+        return
+
+    # Check room
+    item = current_room.get_item(item_name)
+    if item:
+      self.console.print(f"\n[yellow]{item.name}[/yellow]")
+      self.console.print(item.examine())
+      if isinstance(item, Container) and item.is_open:
+        contents = item.get_contents()
+        if contents:
+          self.console.print("\n[yellow]Contents:[/yellow]")
+          for content_item in contents:
+            self.console.print(f"- {content_item.name}")
+    else:
+      self.console.print("[red]You don't see that here.[/red]")
 
   def quit_command(self, *args):
     """Exit the game"""
