@@ -18,7 +18,7 @@ class CommandParser:
       "take": self.take_command,
       #"drop": self.drop_command,
       #"examine": self.examine_command,
-      #"use": self.use_command,
+      "use": self.use_command,
       #"talk": self.talk_command,
       #"give": self.give_command,
       #"open": self.open_command,
@@ -103,6 +103,34 @@ class CommandParser:
         self.console.print(f"- {item.name}")
     else:
       self.console.print("\n[yellow]Your inventory is empty.[/yellow]")
+
+  def use_command(self, command, *args):
+    """Use an item in the player's inventory"""
+    if not args:
+      self.console.print("[red]Please specify an item to use.[/red]")
+      return
+
+    current_room = self.game_engine.player.current_room
+    if not current_room.puzzle:
+      self.console.print("[red]There is no puzzle to solve here.[/red]")
+      return
+  
+    if current_room.puzzle.is_solved:
+      self.console.print("[yellow]This puzzle has already been solved.[/yellow]")
+      return
+  
+    solution_attempt = " ".join(args)
+    success, message = current_room.puzzle.check_solution(solution_attempt, self.game_engine.player)
+  
+    if success:
+      # Show success message
+      self.console.print(f"\n[bright_green] *** PUZZLE SOLVED! *** [/bright_green]")
+      self.console.print(f"[bright_green]{message}[/bright_green]")
+  
+      # After solving the puzzle, update the room display
+      self.look_command()
+    else:
+      self.console.print(f"[red]{message}[/red]")
 
   def take_command(self, command, *args):
     """Handle taking items"""
