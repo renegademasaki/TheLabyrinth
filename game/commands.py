@@ -28,7 +28,6 @@ class CommandParser:
   
   
   def parse_command(self, command_string):
-    print("Running parse_command")
     """Parse a command string and execute the corresponding command"""
     words = command_string.lower().split()
     if not words:
@@ -69,7 +68,6 @@ class CommandParser:
     self.console.print(help_table)
 
   def move_command(self, direction):
-    print("Running move_command")
     """Handle movement commands"""
     current_room = self.game_engine.player.current_room
 
