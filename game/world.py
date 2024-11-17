@@ -16,6 +16,40 @@ class Room:
     else:
       self.exits[direction] = room
 
+  def add_item(self, item):
+    """Add an item to the room"""
+    self.items.append(item)
+
+  def remove_item(self, item_name):
+    """Remove an item from the room by name"""
+    for item in self.items:
+      if item.name.lower() == item_name.lower():
+        self.items.remove(item)
+        return item
+    return None
+
+  def get_item(self, item_name):
+    """Get an item from the room by name without removing it"""
+    for item in self.items:
+      if item.name.lower() == item_name.lower():
+        return item
+    return None
+
+  def add_puzzle(self, puzzle):
+    """Add a puzzle to the room"""
+    self.puzzle = puzzle
+
+  def add_npc(self, npc):
+    """Add an NPC to the room"""
+    self.npc = npc
+
+  def unlock_exit(self, direction):
+    """Unlock an exit if it was locked by a puzzle"""
+    if direction in self.locked_exits:
+      room, _ = self.locked_exits[direction]
+      self.exits[direction] = room
+      del self.locked_exits[direction]
+
 class World:
   def __init__(self):
     self.rooms = {}
@@ -51,6 +85,18 @@ class World:
       "A magnificent room filled with glittering treasures and artifacts."
     )
 
+    # Create puzzles
+    door_puzzle = Puzzle(
+      "Locked door",
+      "A locked door stands before you.",
+      "lever",
+      "You pull the lever and the door unlocks!",
+      ["lever"]
+    )
+
+    # Add puzzles to rooms
+    great_hall.add_puzzle(door_puzzle)
+
     # Create connections between rooms
     entrance.add_exit("north", great_hall)
     great_hall.add_exit("south", entrance)
@@ -59,7 +105,7 @@ class World:
     courtyard.add_exit("east", great_hall)
     library.add_exit("west", great_hall)
     # Add locked exit to treasure room
-    #library.add_exit("north", treasure_room, door_puzzle)
+    library.add_exit("north", treasure_room, door_puzzle)
     treasure_room.add_exit("south", great_hall)
 
     # Store rooms and set starting point
