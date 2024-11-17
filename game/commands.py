@@ -86,3 +86,17 @@ class CommandParser:
     else:
       self.console.print("[red]You can't go that way.[/red]")
 
+  def look_command(self, *args):
+    """Look around the current room"""
+    self.game_engine.clear_screen()
+    self.game_engine.display_room()
+
+  def inventory_command(self, *args):
+    """Display the player's inventory"""
+    inventory = self.game_engine.player.get_inventory()
+    if inventory:
+      self.console.print("\n[yellow]Your inventory:[/yellow]")
+      for item in inventory:
+        self.console.print(f"- {item.name}")
+    else:
+      self.console.print("\n[yellow]Your inventory is empty.[/yellow]")
