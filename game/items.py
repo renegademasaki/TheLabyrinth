@@ -1,5 +1,5 @@
 class Item:
-  def __init__(self, name, description, can_take=True):
+  def __init__(self, name, description, can_take=True, puzzle_hint=None):
     self.name = name
     self.description = description
     self.can_take = can_take
