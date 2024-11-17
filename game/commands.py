@@ -73,11 +73,10 @@ class CommandParser:
     current_room = self.game_engine.player.current_room
 
     # Check if the direction is valid
-    # ***CODE FOR SOLVED PUZZLE MAY NEED TO BE EDITED***
     if direction in current_room.locked_exits:
       room, puzzle = current_room.locked_exits[direction]
       if puzzle.is_solved:
-        current_room.unlock_direction(direction)
+        current_room.unlock_exit(direction)
       else:
         self.console.print("[red]That path is locked.[/red]")
         return
