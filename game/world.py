@@ -1,4 +1,5 @@
 from .puzzles import Puzzle
+from .items import Item
 
 class Room:
   def __init__(self, name, description):
@@ -99,6 +100,15 @@ class World:
     # Add puzzles to rooms
     great_hall.add_puzzle(door_puzzle)
 
+    # Add items to rooms
+    lever = Item(
+      "Lever",
+      "A wooden lever with a rusted handle.",
+      "You pull the lever and the door unlocks!"
+    )
+    
+    entrance.add_item(lever)
+    
     # Create connections between rooms
     entrance.add_exit("north", great_hall)
     great_hall.add_exit("south", entrance)
