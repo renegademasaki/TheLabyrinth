@@ -107,7 +107,7 @@ class World:
     courtyard.add_exit("east", great_hall)
     library.add_exit("west", great_hall)
     # Add locked exit to treasure room
-    library.add_exit("north", treasure_room, door_puzzle)
+    great_hall.add_exit("north", treasure_room, door_puzzle)
     treasure_room.add_exit("south", great_hall)
 
     # Store rooms and set starting point
