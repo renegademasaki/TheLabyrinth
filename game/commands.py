@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+from .items import Container
 
 class CommandParser:
   def __init__(self, game_engine):
