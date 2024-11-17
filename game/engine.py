@@ -64,3 +64,5 @@ class Dog:
 my_dog = Dog('Rylie', 'Mini Dachshund')
 shawns_dog = Dog('Roman', 'Mastiff')
 
+def hello_world():
+  print('Hello World!')
