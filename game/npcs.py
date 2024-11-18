@@ -1,7 +1,7 @@
 #from .player import Player
-#from .commands import CommandParser
+from .commands import CommandParser
 from .items import Item
-#from .commands import add_to_inventory
+from .commands import add_to_inventory()
 
 class NPC:
   def __init__(self, name, description, dialogue_options):
@@ -30,11 +30,16 @@ class NPC:
     # Special responses for valuable items
     if item.name in ["Silver Coin"]:
         self.current_dialogue_state = "received_valuable"
+
+        # Create the rusty key item
         rusty_key = Item(
           "Rusty Key",
           "An old rusty key. It flakes and crumbles in your hand.",
           puzzle_hint="This might fit in a lock.")
+
+        # Add the rusty key to the player's inventory
         self.game_engine.player.add_to_inventory(rusty_key)
+        
         return f"""Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*
         You take rusty old key in return! *he gives you [green]rusty key[/green]*"""
     return f"Grock take {item.name}. Thanks, maybe..."
