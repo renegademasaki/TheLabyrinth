@@ -58,6 +58,11 @@ class GameEngine:
                     style="yellow"
                 ))
 
+        # Display NPC if present
+        if room.npc:
+            self.console.print(f"\n[yellow]{room.npc.name} is here![/yellow]")
+            self.console.print(f"{room.npc.description}")
+
         # Display items in the room
         if room.items:
             items_text = "\nYou see: "
