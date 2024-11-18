@@ -57,7 +57,7 @@ class CommandParser:
       "drop <item>": "Drop an item from your inventory",
       "examine <item>": "Look closely at an item",
       "use <item>": "Use an item in your inventory",
-      "talk [name]": "Talk to a character",
+      "talk <name>": "Talk to a character",
       "give <item>": "Give an item to a character",
       "open <container>": "Open a container or chest",
       "help": "Display this help message",
