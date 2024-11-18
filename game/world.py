@@ -141,6 +141,7 @@ class World:
     great_hall.add_item(silver_coin)
     treasure_room.add_item(helm_of_knowledge)
     library.add_item(locked_chest)
+    courtyard.add_item(rusty_key) # ***TEST CODE, goblin giving key to player not working***
     
     # Create connections between rooms
     entrance.add_exit("north", great_hall)
