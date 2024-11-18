@@ -227,29 +227,29 @@ class CommandParser:
       for option, (text, _) in dialogue.items():
         self.console.print(f"[cyan]{option}[/cyan]: {text}")
 
-    def give_command(self, command, *args):
-      """Handle giving items to characters"""
-      if not args:
-        self.console.print("[red]What do you want to give?[/red]")
+  def give_command(self, command, *args):
+    """Handle giving items to characters"""
+    if not args:
+      self.console.print("[red]What do you want to give?[/red]")
+      return
+
+    current_room = self.game_engine.player.current_room
+    if not current_room.npc:
+      self.console.print("[red]There is no one here to give anything to.[/red]")
+      return
+
+    item_name = " ".join(args)
+    npc = current_room.npc
+
+    # Check if player has the item in their inventory
+    for item in self.game_engine.player.inventory:
+      if item.name.lower() == item_name.lower():
+        self.game_engine.player.remove_from_inventory(item)
+        response = npc.receive_item(item)
+        self.console.print(f"\n[green]{response}[/green]")
         return
 
-      current_room = self.game_engine.player.current_room
-      if not current_room.npc:
-        self.console.print("[red]There is no one here to give anything to.[/red]")
-        return
-
-      item_name = " ".join(args)
-      npc = current_room.npc
-
-      # Check if player has the item in their inventory
-      for item in self.game_engine.player.inventory:
-        if item.name.lower() == item_name.lower():
-          self.game_engine.player.remove_from_inventory(item)
-          response = npc.receive_item(item)
-          self.console.print(f"\n[green]{response}[/green]")
-          return
-
-      self.console.print("[red]You don't have that item.[/red]")
+    self.console.print("[red]You don't have that item.[/red]")
 
   def quit_command(self, *args):
     """Exit the game"""
