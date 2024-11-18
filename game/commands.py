@@ -124,7 +124,7 @@ class CommandParser:
   
     if success:
       # Show success message
-      self.console.print(f"\n[bright_green] *** PUZZLE SOLVED! *** [/bright_green]")
+      self.console.print("\n[bright_green] *** PUZZLE SOLVED! *** [/bright_green]")
       self.console.print(f"[bright_green]{message}[/bright_green]")
   
       # After solving the puzzle, update the room display
