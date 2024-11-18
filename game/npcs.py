@@ -1,3 +1,44 @@
+class NPC:
+  def __init__(self, name, description, dialogue_options):
+    self.name = name
+    self.description = description
+    self.dialogue_options = dialogue_options
+    self.current_dialogue_state = "initial"
+    self.inventory = []
+
+  def talk(self):
+    """Get current dialogue options"""
+    return self.dialogue_options.get(self.current_dialogue_state, {})
+
+  def respond(self, choice):
+    """Handle player's dialogue choice."""
+    current_options = self.dialogue_options.get(self.current_dialogue_state, {})
+    if choice in current_options:
+        response, next_state = current_options[choice]
+        self.current_dialogue_state = next_state
+        return response
+    return "The goblin doesn't understand what you mean."
+
+  def receive_item(self, item):
+    """Handle receiving an item from the player."""
+    self.inventory.append(item)
+    # Special responses for valuable items
+    if item.name in ["Silver Coin"]:
+        self.current_dialogue_state = "received_valuable"
+        return f"Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*"
+    return f"Grock take {item.name}. Thanks, maybe..."
+
+  @classmethod
+  def from_dict(cls, data, dialogue_options):
+    """Create an NPC from a dictionary."""
+    npc = cls(
+        name=data['name'],
+        description=data['description'],
+        dialogue_options=dialogue_options
+    )
+    npc.current_dialogue_state = data['current_dialogue_state']
+    return npc
+
 # Create the goblin's dialogue options
 GOBLIN_DIALOGUE = {
     "initial": {
