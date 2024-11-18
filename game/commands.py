@@ -120,6 +120,7 @@ class CommandParser:
       return
   
     solution_attempt = " ".join(args)
+    
     success, message = current_room.puzzle.check_solution(solution_attempt, self.game_engine.player)
   
     if success:
@@ -147,6 +148,16 @@ class CommandParser:
         current_room.remove_item(item_name)
         self.game_engine.player.add_to_inventory(item)
         self.console.print(f"[green]You take the {item.name}.[/green]")
+
+        # Check for win condition
+        if item.name == "Helm of Knowledge":
+          self.console.print("\n[bright_yellow]Congratulations![/bright_yellow]")
+          self.console.print("[bright_yellow]You have found the legendary Helm of Knowledge![/bright_yellow]")
+          self.console.print("[bright_yellow]As you place the helm on your head, you are teleported out of the labyrinth![/bright_yellow]")
+          self.console.print("[bright_yellow]Your quest is complete.[/bright_yellow]")
+          self.console.print("\nThank you for playing!")
+          self.game_engine.quit_game()
+        
       else:
         self.console.print("[red]You can't take that.[/red]")
     else:
