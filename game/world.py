@@ -1,5 +1,6 @@
 from .puzzles import Puzzle
 from .items import Container, Item
+from .npcs import create_goblin
 
 class Room:
   def __init__(self, name, description):
@@ -88,10 +89,14 @@ class World:
       "A magnificent room filled with glittering treasures and artifacts."
     )
 
+    # Create and add goblin to courtyard
+    goblin = create_goblin()
+    courtyard.add_npc(goblin)
+
     # Create puzzles
     door_puzzle = Puzzle(
-      "Locked door",
-      "A locked door stands before you.",
+      "Locked Door",
+      "A locked door stands before you. An empty slot protrudes from the wall next to it.",
       "lever",
       "You pull the lever and the door unlocks!",
       ["lever"]
