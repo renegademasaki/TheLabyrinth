@@ -1,3 +1,5 @@
+from .player import Player
+
 class NPC:
   def __init__(self, name, description, dialogue_options):
     self.name = name
@@ -25,7 +27,9 @@ class NPC:
     # Special responses for valuable items
     if item.name in ["Silver Coin"]:
         self.current_dialogue_state = "received_valuable"
-        return f"Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*"
+        return f"""Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*
+        You take rusty old key in return! *he gives you [green]rusty key[/green]*"""
+        self.game_engine.player.add_to_inventory(rusty_key):
     return f"Grock take {item.name}. Thanks, maybe..."
 
   @classmethod
