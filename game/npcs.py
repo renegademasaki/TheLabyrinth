@@ -1,4 +1,6 @@
-from .player import Player
+#from .player import Player
+from .commands import CommandParser
+from .items import Item
 
 class NPC:
   def __init__(self, name, description, dialogue_options):
@@ -29,7 +31,7 @@ class NPC:
         self.current_dialogue_state = "received_valuable"
         return f"""Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*
         You take rusty old key in return! *he gives you [green]rusty key[/green]*"""
-        self.game_engine.player.add_to_inventory(rusty_key):
+        self.game_engine.player.add_to_inventory(rusty key)
     return f"Grock take {item.name}. Thanks, maybe..."
 
   @classmethod

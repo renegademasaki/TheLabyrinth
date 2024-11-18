@@ -241,15 +241,15 @@ class CommandParser:
       item_name = " ".join(args)
       npc = current_room.npc
 
-    # Check if player has the item in their inventory
-    for item in self.game_engine.player.inventory:
-      if item.name.lower() == item_name.lower():
-        self.game_engine.player.remove_from_inventory(item)
-        response = npc.receive_item(item)
-        self.console.print(f"\n[green]{response}[/green]")
-        return
+      # Check if player has the item in their inventory
+      for item in self.game_engine.player.inventory:
+        if item.name.lower() == item_name.lower():
+          self.game_engine.player.remove_from_inventory(item)
+          response = npc.receive_item(item)
+          self.console.print(f"\n[green]{response}[/green]")
+          return
 
-    self.console.print("[red]You don't have that item.[/red]")
+      self.console.print("[red]You don't have that item.[/red]")
 
   def quit_command(self, *args):
     """Exit the game"""
