@@ -1,5 +1,5 @@
 from .puzzles import Puzzle
-from .items import Item
+from .items import Container, Item
 
 class Room:
   def __init__(self, name, description):
@@ -100,14 +100,37 @@ class World:
     # Add puzzles to rooms
     great_hall.add_puzzle(door_puzzle)
 
-    # Add items to rooms
+    # Create locked chest with contents
     lever = Item(
       "Lever",
-      "A wooden lever with a rusted handle.",
-      puzzle_hint="This lever looks like it could be used to unlock something."
+      "An old wooden lever with a rusted handle.",
+      puzzle_hint="This looks like it might fit in a slot."
+    )
+
+    locked_chest = Container(
+      "Locked Chest",
+      "A wooden chest with a rusted lock.",
+      required_key="Rusty Key",
+      contents=[lever],
+      can_take=False,
+      puzzle_hint="The keyhole looks rusty, perhaps an old key would work?"
+    )
+
+    # Add items to rooms
+    silver_coin = Item(
+      "Silver Coin",
+      "A shiny silver coin with a cracked zinc inlay.",
+      puzzle_hint="Someone might find this valuable."
+    )
+    helm_of_knowledge = Item(
+      "Helm of Knowledge",
+      "A mysterious golden helm with a strange symbol on its front.",
+      puzzle_hint="This might be useful for escaping the labyrinth."
     )
     
-    entrance.add_item(lever)
+    great_hall.add_item(silver_coin)
+    treasure_room.add_item(helm_of_knowledge)
+    library.add_item(locked_chest)
     
     # Create connections between rooms
     entrance.add_exit("north", great_hall)
