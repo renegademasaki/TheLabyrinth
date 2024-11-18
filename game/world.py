@@ -102,8 +102,16 @@ class World:
       ["lever"]
     )
 
+    chest_puzzle = Puzzle(
+      "Locked Chest",
+      "A locked chest lies in the corner of the library. A keyhole is visible.",
+      "rusty key",
+      "You insert the rusty key into the keyhole and the chest opens!",
+      ["rusty key"])
+
     # Add puzzles to rooms
     great_hall.add_puzzle(door_puzzle)
+    library.add_puzzle(chest_puzzle)
 
     # Create locked chest with contents
     lever = Item(
