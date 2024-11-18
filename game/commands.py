@@ -22,7 +22,7 @@ class CommandParser:
       "use": self.use_command,
       "talk": self.talk_command,
       "give": self.give_command,
-      #"open": self.open_command,
+      "open": self.open_command,
       "quit": self.quit_command,
       "exit": self.quit_command
     }
@@ -59,7 +59,7 @@ class CommandParser:
       "use <item>": "Use an item in your inventory",
       "talk [name]": "Talk to a character",
       "give <item>": "Give an item to a character",
-      #"open <container>": "Open a container or chest",
+      "open <container>": "Open a container or chest",
       "help": "Display this help message",
       "quit/exit": "Exit the game"
     }
@@ -250,6 +250,38 @@ class CommandParser:
         return
 
     self.console.print("[red]You don't have that item.[/red]")
+
+  def open_command(self, command, *args):
+    """Handle opening containers"""
+    if not args:
+      self.console.print("[red]What do you want to open?[/red]")
+      return
+
+    container_name = " ".join(args)
+    current_room = self.game_engine.player.current_room
+    
+    # Check if the container exists in the current room
+    container = None
+    for item in current_room.items:
+      if item.name.lower() == container_name.lower() and isinstance(item, Container):
+        container = item
+        break
+
+    if container:
+      success, message = container.try_open(self.game_engine.player)
+      if success:
+        self.console.print(f"\n[green]{message}[/green]")
+        # If container has contents, show them
+        contents = container.get_contents()
+        if contents:
+          self.console.print("\n[yellow]Inside you find:[/yellow]")
+          for item in contents:
+            current_room.add_item(item)
+            self.console.print(f"- {item.name}")
+      else:
+        self.console.print(f"\n[red]{message}[/red]")
+    else:
+      self.console.print("[red]You don't see that here.[/red]")
 
   def quit_command(self, *args):
     """Exit the game"""
