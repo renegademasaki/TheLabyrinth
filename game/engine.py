@@ -86,7 +86,7 @@ class GameEngine:
 
     def quit_game(self):
         """Exit the game"""
-        self.console.print("\nThanks for playing!", style="bold green")
+        self.console.print("\nThank you for playing!", style="bold green")
         self.is_running = False
         sys.exit(0)
 

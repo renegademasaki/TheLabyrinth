@@ -155,7 +155,6 @@ class CommandParser:
           self.console.print("[bright_yellow]You have found the legendary Helm of Knowledge![/bright_yellow]")
           self.console.print("[bright_yellow]As you place the helm on your head, you are teleported out of the labyrinth![/bright_yellow]")
           self.console.print("[bright_yellow]Your quest is complete.[/bright_yellow]")
-          self.console.print("\nThank you for playing!")
           self.game_engine.quit_game()
         
       else:
