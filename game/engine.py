@@ -15,6 +15,7 @@ class GameEngine:
         self.player = Player(starting_room=self.world.starting_room)
         self.command_parser = CommandParser(self)
         self.is_running = True
+        #self.game_engine = GameEngine()
 
     def clear_screen(self):
         """Clear the terminal screen"""

@@ -13,7 +13,7 @@ class NPC:
     self.dialogue_options = dialogue_options
     self.current_dialogue_state = "initial"
     self.inventory = []
-    self.game_engine = game_engine # Pass game_engine during NPC creation
+    self.game_engine = game_engine # Reference to the game engine
 
   def talk(self):
     """Get current dialogue options"""
@@ -53,8 +53,9 @@ class NPC:
           #puzzle_hint="This might fit in a lock.")
 
         # Add the rusty key to the player's inventory
+        #self.game_engine.player.add_to_inventory(rusty_key)
         self.game_engine.player.add_to_inventory(rusty_key)
-        
+      
         return f"""Oooh! Shiny! {item.name} make Grock very happy! *does a little dance*
         You take rusty old key in return! *he gives you [green]rusty key[/green]*"""
     return f"Grock take {item.name}. Thanks, maybe..."
@@ -66,7 +67,7 @@ class NPC:
         name=data['name'],
         description=data['description'],
         dialogue_options=dialogue_options,
-        game_engine = GameEngine()
+        game_engine= # TESTING THIS CODE
     )
     npc.current_dialogue_state = data['current_dialogue_state']
     return npc
@@ -102,10 +103,9 @@ GOBLIN_DIALOGUE = {
 
 def create_goblin():
   """Create a goblin NPC with predefined dialogue"""
-  #game = GameEngine() # TESTING CODE
   return NPC(
     "Grock",
     "A small, green goblin with a mischievous grin and pockets full of holes.",
     GOBLIN_DIALOGUE,
-    game_engine = GameEngine()
+    game_engine= # TESTING THIS CODE
   )
