@@ -1,15 +1,18 @@
 #from .player import Player
+from game.engine import GameEngine
 from .commands import CommandParser
 from .items import Item
-from .commands import add_to_inventory()
+from .player import Player
+#from .commands import add_to_inventory()
 
 class NPC:
-  def __init__(self, name, description, dialogue_options):
+  def __init__(self, name, description, dialogue_options, game_engine):
     self.name = name
     self.description = description
     self.dialogue_options = dialogue_options
     self.current_dialogue_state = "initial"
     self.inventory = []
+    self.game_engine = game_engine # Pass game_engine during NPC creation
 
   def talk(self):
     """Get current dialogue options"""
@@ -50,7 +53,8 @@ class NPC:
     npc = cls(
         name=data['name'],
         description=data['description'],
-        dialogue_options=dialogue_options
+        dialogue_options=dialogue_options,
+        game = GameEngine()
     )
     npc.current_dialogue_state = data['current_dialogue_state']
     return npc
@@ -86,8 +90,10 @@ GOBLIN_DIALOGUE = {
 
 def create_goblin():
   """Create a goblin NPC with predefined dialogue"""
+  game = GameEngine() # TESTING CODE
   return NPC(
     "Grock",
     "A small, green goblin with a mischievous grin and pockets full of holes.",
-    GOBLIN_DIALOGUE
+    GOBLIN_DIALOGUE,
+    game
   )
