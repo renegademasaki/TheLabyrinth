@@ -1,5 +1,4 @@
 from game.engine import GameEngine
-import game.engine
 
 def main():
   """Entry point for the game"""
@@ -8,4 +7,3 @@ def main():
 
 if __name__ == '__main__':
   main()
-
