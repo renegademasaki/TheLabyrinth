@@ -1,5 +1,6 @@
 #from .player import Player
-from game.engine import GameEngine
+#from .engine import GameEngine
+#from game.engine import GameEngine
 from .commands import CommandParser
 from .items import Item
 from .player import Player
@@ -30,15 +31,26 @@ class NPC:
   def receive_item(self, item):
     """Handle receiving an item from the player."""
     self.inventory.append(item)
-    # Special responses for valuable items
-    if item.name in ["Silver Coin"]:
-        self.current_dialogue_state = "received_valuable"
 
+    # Check if the player gives the goblin a Silver Coin
+    if item.name.lower() == "silver coin":
+        self.current_dialogue_state = "received_valuable"
+    
         # Create the rusty key item
         rusty_key = Item(
-          "Rusty Key",
-          "An old rusty key. It flakes and crumbles in your hand.",
-          puzzle_hint="This might fit in a lock.")
+            "Rusty Key",
+            "An old rusty key. It flakes and crumbles in your hand.",
+            puzzle_hint="This might fit in a lock.")
+
+    # Special responses for valuable items
+    #if item.name in ["Silver Coin"]:
+        #self.current_dialogue_state = "received_valuable"
+
+        # Create the rusty key item
+        #rusty_key = Item(
+          #"Rusty Key",
+          #"An old rusty key. It flakes and crumbles in your hand.",
+          #puzzle_hint="This might fit in a lock.")
 
         # Add the rusty key to the player's inventory
         self.game_engine.player.add_to_inventory(rusty_key)
@@ -54,7 +66,7 @@ class NPC:
         name=data['name'],
         description=data['description'],
         dialogue_options=dialogue_options,
-        game = GameEngine()
+        game_engine = GameEngine()
     )
     npc.current_dialogue_state = data['current_dialogue_state']
     return npc
@@ -90,10 +102,10 @@ GOBLIN_DIALOGUE = {
 
 def create_goblin():
   """Create a goblin NPC with predefined dialogue"""
-  game = GameEngine() # TESTING CODE
+  #game = GameEngine() # TESTING CODE
   return NPC(
     "Grock",
     "A small, green goblin with a mischievous grin and pockets full of holes.",
     GOBLIN_DIALOGUE,
-    game
+    game_engine = GameEngine()
   )
