@@ -27,8 +27,9 @@ class CommandParser:
       "exit": self.quit_command,
 
       # QA Commands
-      "qa help" : self.qa_help_command,
-      "qa solve all" : self.qa_solve_all_command
+      "qa": self.qa_help_command,
+      "qa_help": self.qa_help_command,
+      "qa_solve_all": self.qa_solve_all_command
     }
 
 
@@ -39,8 +40,8 @@ class CommandParser:
     help_table.add_column("Description", style="white")
 
     commands_help = {
-      "qa solve all": "Automatically solve entire game",
-      "qa help": "Display the QA help menu"
+      "qa_solve_all": "Automatically solve entire game",
+      "qa/qa_help": "Display the QA help menu"
     }
 
     for command, description in commands_help.items():
@@ -49,6 +50,7 @@ class CommandParser:
     self.console.print(help_table)
 
   def qa_solve_all_command(self, *args):
+    print("running qa_solve_all")
     """Automatically solve the entire game, step by step"""
     self.move_command("north")
   
