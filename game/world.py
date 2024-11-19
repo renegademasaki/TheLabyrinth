@@ -104,9 +104,9 @@ class World:
 
     chest_puzzle = Puzzle(
       "Locked Chest",
-      "A locked chest lies in the corner of the library. A keyhole is visible.",
+      "A wooden chest lies in the corner of the library. A keyhole is visible.",
       "rusty key",
-      "You insert the rusty key into the keyhole and the chest opens!",
+      "You insert the rusty key into the keyhole and the chest unlocks!",
       ["rusty key"])
 
     # Add puzzles to rooms
