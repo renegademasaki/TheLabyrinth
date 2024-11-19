@@ -219,7 +219,7 @@ class CommandParser:
       # After solving the puzzle, remove the required items from inventory
       for item_name in current_room.puzzle.required_items:
           item = self.game_engine.player.get_inventory_item(item_name)
-          if item:
+          if item and item_name != "rusty key":
               self.game_engine.player.remove_from_inventory(item)
             
       # Check if the current room has an exit locked by this puzzle
