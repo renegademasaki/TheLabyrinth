@@ -227,6 +227,16 @@ class CommandParser:
           if requires_puzzle.name == current_room.puzzle.name:
               current_room.unlock_exit(direction)
               break
+
+      # Check if the current room has a container that's been opened by this puzzle
+      container = None
+      for item in current_room.items:
+        if item.name.lower() == solution_attempt.lower() and isinstance(item, Container):
+          container = item
+          break
+
+      if container:
+        self.is_open = True
   
       # After solving the puzzle, update the room display
       self.look_command()

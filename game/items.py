@@ -42,21 +42,35 @@ class Container(Item):
     self.is_open = False
 
   def try_open(self, player):
-    """Attempt to open the container with a key from player's inventory."""
+    """Attempt to open the container."""
     if self.is_open:
-        return False, "The container is already open."
-
-    if not self.required_key:
-        self.is_open = True
-        return True, f"You open the {self.name}."
+      self.get_contents()
+      return True, f"You open the {self.name}."
+    
+    elif self.required_key and self.required_key not in player.inventory
+      return False, f"You need the {self.required_key} to open this."
 
     # Check if player has the required key
     for item in player.get_inventory():
         if item.name.lower() == self.required_key.lower():
-            self.is_open = True
-            return True, f"You unlock the {self.name} with the {item.name}."
+          self.is_open = True
+          self.get_contents()
+          return True, f"You open the {self.name} with the {item.name}."
+  
+    #if self.is_open:
+        #return False, "The container is already open."
 
-    return False, f"You need the {self.required_key} to open this."
+    #if not self.required_key:
+        #self.is_open = True
+        #return True, f"You open the {self.name}."
+
+    # Check if player has the required key
+    #for item in player.get_inventory():
+        #if item.name.lower() == self.required_key.lower():
+            #self.is_open = True
+            #return True, f"You unlock the {self.name} with the {item.name}."
+
+    #return False, f"You need the {self.required_key} to open this."
 
   def get_contents(self):
     """Return the contents if the container is open."""
