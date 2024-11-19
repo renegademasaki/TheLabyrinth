@@ -70,6 +70,7 @@ class CommandParser:
       "take silver coin",
       "examine silver coin",
       "west",
+      # This is for regression testing
       "drop silver coin",
       "take silver coin",
       "talk to grock",
