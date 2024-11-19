@@ -17,10 +17,6 @@ class GameEngine:
         self.is_running = True
         #self.game_engine = GameEngine()
 
-    #def run_command(self, command):
-        #"""Simulate running a command through the command parser"""
-        #self.command_parser.parse_command(command)
-
     def clear_screen(self):
         """Clear the terminal screen"""
         os.system('cls' if os.name == 'nt' else 'clear')

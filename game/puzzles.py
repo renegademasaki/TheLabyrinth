@@ -17,8 +17,6 @@ class Puzzle:
       player_items = {item.name.lower() for item in player.get_inventory()}
       required_items = {item.lower() for item in self.required_items}
       if not required_items.issubset(player_items):
-        #missing_items = required_items - player_items
-        #return False, f"You need {', '.join(missing_items)} to solve this puzzle."
         return False, "You need an item to solve this puzzle."
 
     if attempt.lower() == self.solution:
