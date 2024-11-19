@@ -121,7 +121,7 @@ class World:
     )
 
     locked_chest = Container(
-      "Locked Chest",
+      "Wooden Chest",
       "A wooden chest with a rusted lock.",
       required_key="Rusty Key",
       contents=[lever],
