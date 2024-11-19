@@ -60,10 +60,15 @@ class CommandParser:
 
     # Define a list of automated commands
     commands_to_run = [
+      "look",
+      "inventory",
+      "inv",
       "north",
       "take silver coin",
       "examine silver coin",
       "west",
+      "drop silver coin",
+      "take silver coin",
       "talk to grock",
       "give silver coin",
       "examine rusty key",
