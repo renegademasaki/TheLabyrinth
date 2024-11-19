@@ -61,7 +61,24 @@ class CommandParser:
     # Define a list of automated commands
     commands_to_run = [
       "north",
-      "take silver coin"
+      "take silver coin",
+      "examine silver coin",
+      "west",
+      "talk to grock",
+      "give silver coin",
+      "examine rusty key",
+      "east",
+      "east",
+      "examine chest",
+      "use rusty key",
+      "open chest",
+      "take lever",
+      "examine lever",
+      "west",
+      "use lever",
+      "north",
+      "examine helm of knowledge",
+      "take helm of knowledge"
     ]
 
     # Execute each command automatically
