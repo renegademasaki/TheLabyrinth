@@ -135,11 +135,11 @@ class World:
       "A shiny silver coin with a cracked zinc inlay.",
       puzzle_hint="Someone might find this valuable."
     )
-    rusty_key = Item(
-      "Rusty Key",
-      "An old rusty key. It flakes and crumbles in your hand.",
-      puzzle_hint="This might fit in a lock."
-    )
+    #rusty_key = Item( # ***TEST CODE, goblin giving key to player not working***
+      #"Rusty Key",
+      #"An old rusty key. It flakes and crumbles in your hand.",
+      #puzzle_hint="This might fit in a lock."
+    #)
     helm_of_knowledge = Item(
       "Helm of Knowledge",
       "A mysterious golden helm with a strange symbol on its front.",
@@ -149,7 +149,6 @@ class World:
     great_hall.add_item(silver_coin)
     treasure_room.add_item(helm_of_knowledge)
     library.add_item(locked_chest)
-    courtyard.add_item(rusty_key) # ***TEST CODE, goblin giving key to player not working***
     
     # Create connections between rooms
     entrance.add_exit("north", great_hall)

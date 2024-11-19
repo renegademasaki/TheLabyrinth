@@ -1,7 +1,7 @@
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
-from .items import Container
+from .items import Container, Item
 
 class CommandParser:
   def __init__(self, game_engine):
@@ -250,6 +250,13 @@ class CommandParser:
 
     item_name = " ".join(args)
     npc = current_room.npc
+    if item_name == "silver coin":
+      rusty_key = Item(
+        "Rusty Key",
+        "An old rusty key. It flakes and crumbles in your hand.",
+        puzzle_hint="This might fit in a lock."
+      )
+      self.game_engine.player.add_to_inventory(rusty_key)
 
     # Check if player has the item in their inventory
     for item in self.game_engine.player.inventory:
