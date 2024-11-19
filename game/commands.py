@@ -47,7 +47,7 @@ class CommandParser:
 
     commands_help = {
       "qa_solve_all": "Automatically solve entire game",
-      "qa/qa_help": "Display the QA help menu"
+      "qa/qa_help": "Display this QA help menu"
     }
 
     for command, description in commands_help.items():
