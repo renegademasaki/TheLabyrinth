@@ -49,7 +49,7 @@ class CommandParser:
 
     commands_help = {
       "qa_solve_all": "Automatically solve entire game",
-      "qa_solve_key": "Solve up to the key puzzle"
+      "qa_solve_key": "Solve up to the key/chest puzzle",
       "qa/qa_help": "Display this QA help menu"
     }
 
