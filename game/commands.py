@@ -34,6 +34,7 @@ class CommandParser:
       "qa_solve_all": self.qa_solve_all_command
     }
 
+  
   # ***START QA COMMANDS***
   def run_command(self, command):
     """Simulate running a command through the command parser"""
@@ -93,6 +94,7 @@ class CommandParser:
       self.run_command(cmd)
 
   # ***END QA COMMANDS***
+  
   
   def parse_command(self, command_string):
     """Parse a command string and execute the corresponding command"""
@@ -192,6 +194,12 @@ class CommandParser:
       # Show success message
       self.console.print("\n[bright_green] *** PUZZLE SOLVED! *** [/bright_green]")
       self.console.print(f"[bright_green]{message}[/bright_green]")
+
+      # Check if the current room has an exit locked by this puzzle
+      for direction, (room, requires_puzzle) in current_room.locked_exits.items():
+          if requires_puzzle.name == current_room.puzzle.name:
+              current_room.unlock_exit(direction)
+              break
   
       # After solving the puzzle, update the room display
       self.look_command()
