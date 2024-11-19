@@ -1,6 +1,8 @@
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+
+#from game.engine import GameEngine
 from .items import Container, Item
 
 class CommandParser:
@@ -32,6 +34,10 @@ class CommandParser:
       "qa_solve_all": self.qa_solve_all_command
     }
 
+  # ***START QA COMMANDS***
+  def run_command(self, command):
+    """Simulate running a command through the command parser"""
+    self.parse_command(command)
 
   def qa_help_command(self, *args):
     """Display a list of available QA commands"""
@@ -50,9 +56,21 @@ class CommandParser:
     self.console.print(help_table)
 
   def qa_solve_all_command(self, *args):
-    print("running qa_solve_all")
     """Automatically solve the entire game, step by step"""
-    self.move_command("north")
+
+    # Define a list of automated commands
+    commands_to_run = [
+      "north",
+      "take silver coin"
+    ]
+
+    # Execute each command automatically
+    for cmd in commands_to_run:
+      print(f"Executing QA command: {cmd}")
+      #game_engine.run_command(cmd)
+      self.run_command(cmd)
+
+  # ***END QA COMMANDS***
   
   def parse_command(self, command_string):
     """Parse a command string and execute the corresponding command"""
