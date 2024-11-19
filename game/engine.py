@@ -6,7 +6,7 @@ import sys
 from .world import World
 from .player import Player
 from .commands import CommandParser
-from .items import Item
+#from .items import Item
 
 class GameEngine:
     def __init__(self):

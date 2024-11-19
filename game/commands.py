@@ -24,10 +24,33 @@ class CommandParser:
       "give": self.give_command,
       "open": self.open_command,
       "quit": self.quit_command,
-      "exit": self.quit_command
+      "exit": self.quit_command,
+
+      # QA Commands
+      "qa help" : self.qa_help_command,
+      "qa solve all" : self.qa_solve_all_command
     }
 
-  
+
+  def qa_help_command(self, *args):
+    """Display a list of available QA commands"""
+    help_table = Table(title="Available QA Commands", show_header=True, header_style="bold magenta")
+    help_table.add_column("Command", style="cyan")
+    help_table.add_column("Description", style="white")
+
+    commands_help = {
+      "qa solve all": "Automatically solve entire game",
+      "qa help": "Display the QA help menu"
+    }
+
+    for command, description in commands_help.items():
+      help_table.add_row(command, description)
+
+    self.console.print(help_table)
+
+  def qa_solve_all_command(self, *args):
+    """Automatically solve the entire game, step by step"""
+    self.move_command("north")
   
   def parse_command(self, command_string):
     """Parse a command string and execute the corresponding command"""
