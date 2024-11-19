@@ -50,7 +50,7 @@ class Container(Item):
         self.is_open = True
         return True, f"You open the {self.name}."
 
-     Check if player has the required key
+    # Check if player has the required key
     for item in player.get_inventory():
         if item.name.lower() == self.required_key.lower():
             self.is_open = True
