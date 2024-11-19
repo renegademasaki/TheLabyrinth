@@ -25,3 +25,10 @@ class Player:
   def get_inventory(self):
     """Return a list of the player's inventory items."""
     return self.inventory
+
+  def get_inventory_item(self, item_name):
+    """Retrieve an item from the inventory by its name."""
+    for item in self.inventory:
+      if item.name.lower() == item_name.lower():
+        return item
+    return None

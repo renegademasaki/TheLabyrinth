@@ -31,7 +31,8 @@ class CommandParser:
       # QA Commands
       "qa": self.qa_help_command,
       "qa_help": self.qa_help_command,
-      "qa_solve_all": self.qa_solve_all_command
+      "qa_solve_all": self.qa_solve_all_command,
+      "qa_solve_key": self.qa_solve_key_command
     }
 
   
@@ -48,6 +49,7 @@ class CommandParser:
 
     commands_help = {
       "qa_solve_all": "Automatically solve entire game",
+      "qa_solve_key": "Solve up to the key puzzle"
       "qa/qa_help": "Display this QA help menu"
     }
 
@@ -85,6 +87,25 @@ class CommandParser:
       "north",
       "examine helm of knowledge",
       "take helm of knowledge"
+    ]
+
+    # Execute each command automatically
+    for cmd in commands_to_run:
+      print(f"Executing QA command: {cmd}")
+      #game_engine.run_command(cmd)
+      self.run_command(cmd)
+
+  def qa_solve_key_command(self, *args):
+    """Automatically solve up to the key puzzle"""
+
+    # Define a list of automated commands
+    commands_to_run = [
+      "north",
+      "take silver coin",
+      "west",
+      "give silver coin",
+      "east",
+      "east"
     ]
 
     # Execute each command automatically
@@ -195,6 +216,12 @@ class CommandParser:
       self.console.print("\n[bright_green] *** PUZZLE SOLVED! *** [/bright_green]")
       self.console.print(f"[bright_green]{message}[/bright_green]")
 
+      # After solving the puzzle, remove the required items from inventory
+      for item_name in current_room.puzzle.required_items:
+          item = self.game_engine.player.get_inventory_item(item_name)
+          if item:
+              self.game_engine.player.remove_from_inventory(item)
+            
       # Check if the current room has an exit locked by this puzzle
       for direction, (room, requires_puzzle) in current_room.locked_exits.items():
           if requires_puzzle.name == current_room.puzzle.name:
