@@ -135,11 +135,6 @@ class World:
       "A shiny silver coin with a cracked zinc inlay.",
       puzzle_hint="Someone might find this valuable."
     )
-    #rusty_key = Item( # ***TEST CODE, goblin giving key to player not working***
-      #"Rusty Key",
-      #"An old rusty key. It flakes and crumbles in your hand.",
-      #puzzle_hint="This might fit in a lock."
-    #)
     helm_of_knowledge = Item(
       "Helm of Knowledge",
       "A mysterious golden helm with a strange symbol on its front.",
